@@ -1,0 +1,26 @@
+clear
+echo -----installing instruments-----
+apt install python-pip
+pip install PyInstaller
+apt install android-sdk  
+apt install ant
+apt install python3 
+clear
+echo -----converting py to bin-----
+pyinstaller --onefile --windowed  "main.py"
+clear
+echo -----creating java file-----
+python3 java.py
+mv dist/main dist/main.bin
+clear
+echo -----creating apk file-----
+android create project --target 10 --name SimpleApp --path SimpleApp 
+--activity SimpleApp --package mj.android 
+rm src/mj/android/SimpleApp.java
+mv main.java SimpleApp.java
+mv SimpleApp.java src/mj/android
+mv dist src/mj/android
+ant debug
+clear
+echo -----success! apk file in directory bin/ -----
+
