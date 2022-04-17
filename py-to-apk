@@ -1,4 +1,8 @@
 clear
+echo -----updating instrument-----
+apt update 
+apt upgrade
+clear
 echo -----installing instruments-----
 apt install python-pip
 pip install PyInstaller
